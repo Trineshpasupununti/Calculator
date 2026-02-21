@@ -1,21 +1,29 @@
-pipeline{
-  agent any
-  stages{
-    stage('clone'){
-      steps{
-        git branch:'main',url:'https://github.com/Trineshpasupununti/Calculator.git';
-      }
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building project...'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application...'
+            }
+        }
     }
-    stage('compile'){
-      steps{
-        sh 'javac Calculator.java'
-      }
-    }
-    stage('build'){
-      step{
-        sh 'java Calculator 25 5'
-      }
-    }
-  }
 }
-        
